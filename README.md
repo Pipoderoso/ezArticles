@@ -2,5 +2,9 @@
 Platform for reading summarized Articles from Colombian newspapers
 
 ### Important!
-- Nedded packages: Beautifulsoup4, requests, summa(0.1.0)
-- Run from ./textRankModule to install the correct summa version: $ python3 setup.py install
+- Dependencies are in ```requeriments.txt```
+
+#### Installation
+- The recommended way is to have a virtual environment.
+- Install the submodule ```textrank``` with ```python setup.py install```
+- Install dependencies with ```pip install -r requeriments.txt```
