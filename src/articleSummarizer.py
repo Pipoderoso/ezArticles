@@ -1,7 +1,7 @@
 from articleScraper import getElTiempoArticles
 
-newArticles = getElTiempoArticles() 
+newArticles = getElTiempoArticles()
 
-print(newArticles[0]['Title'])
-
-print(newArticles[0]['Text'])
+print("Title:\n%s\n" % newArticles[0]['title'])
+print("Text:\n%s\n" % newArticles[0]['text'])
+print("Summary:\n%s\n " % newArticles[0]['summary'])

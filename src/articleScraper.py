@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from collections import namedtuple
+from summa import summarizer
 
 def getElTiempoArticles():
     page = requests.get("http://www.eltiempo.com/politica")
@@ -14,7 +15,7 @@ def getElTiempoArticles():
         date = listArticlesInfo_html[i].select(".seccion-fecha meta[itemprop=datePublished]")[0]["content"]
 
         titulo_html = listArticlesInfo_html[i].find(class_="titulo")
-        titulo = titulo_html.get_text(strip=True) 
+        titulo = titulo_html.get_text(strip=True)
         link = 'http://www.eltiempo.com' + titulo_html.find('a')["href"]
 
         textPage = requests.get(link)
@@ -26,7 +27,7 @@ def getElTiempoArticles():
             text += "\n" +  text_html[j].get_text()
 
 
-        article = {'Date':date,'Title':titulo,'Link':link,'Text':text,'Summary':''}
+        article = {'date':date,'title':titulo,'link':link,'text':text,'summary':summarizer.summarize(text, language='spanish')}
         listOfArticles.append(article)
 
     return listOfArticles
