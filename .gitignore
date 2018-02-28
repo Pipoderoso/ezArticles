@@ -102,3 +102,6 @@ ENV/
 
 # vim
 .swp
+
+# test files
+src/output.txt
