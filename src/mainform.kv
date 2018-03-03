@@ -1,0 +1,26 @@
+MainForm:
+
+<MainForm>:
+	orientation: "vertical"
+	articlesList: articles_list
+	BoxLayout: 	
+		size_hint_y: None
+		height: "40dp"
+		Button:
+			size_hint_x: 0.2
+			text: "..."
+		Label:
+			size_hint_x: 0.4
+			text: "ezArticle"
+		Button: 
+			size_hint_x: 0.2
+			text: "Reload"
+		Button:
+			size_hint_x: 0.2
+			text: "Filter"
+	ScrollView:
+		ListView:
+			id: articles_list
+			size_hint:(1, None)
+			item_strings: ["1","2","3"]
+
