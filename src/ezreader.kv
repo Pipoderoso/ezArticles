@@ -44,15 +44,16 @@ RootForm:
     Label:
         text: root.title
         text_size: root.width, None
-        size: self.texture_size
+        size_hint: (1, 0.2)
     ScrollView:
         scroll_type: ['bars', 'content']
         do_scroll_y: True
         orientation: "vertical"
         Label:
             text: root.text_to_show
-            text_size: root.width, None
-            size: self.texture_size
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
     BoxLayout:
         orientation: "horizontal"
         size_hint_y: None
