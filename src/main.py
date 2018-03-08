@@ -14,11 +14,29 @@ class ArticleButton(ListItemButton):
 
 
 class CurrentArticle(BoxLayout):
+    article = ObjectProperty()
     title = StringProperty()
-    summary = StringProperty()
-    whole_text = StringProperty()
+    text_to_show = StringProperty()
     date = StringProperty()
     link = StringProperty()
+    change_text_button_title = StringProperty()
+
+    def __init__(self, article,**kwargs):
+        super(CurrentArticle, self).__init__(**kwargs)
+        self.article = article
+        self.title = self.article['title']
+        self.text_to_show = self.article['summary']
+        self.date = self.article['date']
+        self.link = self.article['link']
+        self.change_text_button_title = "View Original"
+
+    def toggle_text(self):
+        if self.change_text_button_title == "View Original":
+            self.change_text_button_title = "View Summary"
+            self.text_to_show = self.article['whole_text']
+        else:
+            self.change_text_button_title = "View Original"
+            self.text_to_show = self.article['summary']
 
 
 class MainForm(BoxLayout):
@@ -54,14 +72,9 @@ class RootForm(BoxLayout):
 
     def show_current_article(self, article=None):
         self.clear_widgets()
-        if self.current_article is None:
-            self.current_article = CurrentArticle()
-        if article is not None:
-            self.current_article.title = article['title']
-            self.current_article.summary = article['summary']
-            self.current_article.whole_text = article['whole_text']
-            self.current_article.date = article['date']
-            self.current_article.link = article['link']
+        if self.current_article is None and article is not None:
+            self.current_article = CurrentArticle(article=article)
+
         self.add_widget(self.current_article)
 
     def show_main_form(self):

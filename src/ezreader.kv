@@ -45,10 +45,14 @@ RootForm:
         text: root.title
         text_size: root.width, None
         size: self.texture_size
-    Label:
-        text: root.summary
-        text_size: root.width, None
-        size: self.texture_size
+    ScrollView:
+        scroll_type: ['bars', 'content']
+        do_scroll_y: True
+        orientation: "vertical"
+        Label:
+            text: root.text_to_show
+            text_size: root.width, None
+            size: self.texture_size
     BoxLayout:
         orientation: "horizontal"
         size_hint_y: None
@@ -57,4 +61,5 @@ RootForm:
             text: "View Articles"
             on_press: app.root.show_main_form()
         Button:
-            text: "View original"
+            text: root.change_text_button_title
+            on_press: root.toggle_text()
