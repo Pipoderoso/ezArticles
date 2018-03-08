@@ -47,6 +47,11 @@ class RootForm(BoxLayout):
     main_form = ObjectProperty()
     current_article = ObjectProperty()
 
+    def __init__(self, **kwargs):
+        super(RootForm, self).__init__(**kwargs)
+        self.main_form = MainForm()
+        self.add_widget(self.main_form)
+
     def show_current_article(self, article=None):
         self.clear_widgets()
         if self.current_article is None:

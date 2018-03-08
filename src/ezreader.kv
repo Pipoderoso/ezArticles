@@ -1,34 +1,8 @@
 #: import main main
 #: import ListAdapter kivy.adapters.listadapter.ListAdapter
+RootForm:
+
 <RootForm>:
-    MainForm
-
-<ArticleButton>:
-    text: self.article['title']
-    height: "30dp"
-    size_hint_y: None
-    on_press: app.root.show_current_article(self.article)
-
-<CurrentArticle>:
-    orientation: "vertical"
-    size_hint:(1, 1)
-    Label:
-        text: root.title
-        text_size: root.width, None
-        size: self.texture_size
-    Label:
-        text: root.summary
-        text_size: root.width, None
-        size: self.texture_size
-    BoxLayout:
-        orientation: "horizontal"
-        size_hint_y: None
-        height: "40dp"
-        Button:
-            text: "View Articles"
-            on_press: app.root.show_main_form()
-        Button:
-            text: "View original"
 
 <MainForm>:
 	orientation: "vertical"
@@ -57,3 +31,30 @@
                 ListAdapter(data=[],cls=main.ArticleButton,args_converter=root.args_converter)
 			size_hint:(1, 1)
 			item_strings: []
+
+<ArticleButton>:
+    text: self.article['title']
+    height: "30dp"
+    size_hint_y: None
+    on_press: app.root.show_current_article(self.article)
+
+<CurrentArticle>:
+    orientation: "vertical"
+    size_hint:(1, 1)
+    Label:
+        text: root.title
+        text_size: root.width, None
+        size: self.texture_size
+    Label:
+        text: root.summary
+        text_size: root.width, None
+        size: self.texture_size
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: None
+        height: "40dp"
+        Button:
+            text: "View Articles"
+            on_press: app.root.show_main_form()
+        Button:
+            text: "View original"
