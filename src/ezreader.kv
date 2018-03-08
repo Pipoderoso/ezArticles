@@ -1,12 +1,36 @@
+#: import main main
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+
 RootForm:
 
 <RootForm>:
-	MainForm
+    MainForm
+
+<ArticleButton>:
+    on_press: app.root.show_current_article(self.text)
+
+<CurrentArticle@BoxLayout>:
+    title: ""
+    summary: None
+    link: None
+    whole_text: None
+    orientation: "vertical"
+    Label:
+        text: root.title
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: None
+        height: "40dp"
+        Button:
+            text: "View Articles"
+            on_press: app.root.show_main_form()
+        Button:
+            text: "View original"
 
 <MainForm>:
 	orientation: "vertical"
-	articlesList: articles_list
-	BoxLayout: 	
+	articles_list: articles_listview
+	BoxLayout:
 		size_hint_y: None
 		height: "40dp"
 		Button:
@@ -15,15 +39,18 @@ RootForm:
 		Label:
 			size_hint_x: 0.4
 			text: "ezArticle"
-		Button: 
-			size_hint_x: 0.2
-			text: "Reload"
 		Button:
 			size_hint_x: 0.2
-			text: "Filter"
+			text: "Reload"
+            on_press: root.get_last_articles_sync()
+		Button:
+			size_hint_x: 0.2
+			text: "Get Articles"
+            on_press: root.get_last_articles_async()
 	ScrollView:
 		ListView:
-			id: articles_list
+			id: articles_listview
+            adapter:
+                ListAdapter(data=[], cls=main.ArticleButton)
 			size_hint:(1, None)
-			item_strings: ["1","2","3"]
-
+			item_strings: []

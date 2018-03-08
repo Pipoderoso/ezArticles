@@ -4,7 +4,7 @@ from collections import namedtuple
 from summa import summarizer
 import time
 
-class ezArticle():
+class EzArticle():
 
 	def __init__(self, sDate = None):
 		self.sDate = sDate
@@ -33,11 +33,11 @@ class ezArticle():
 					if(stdArticleDate == stdDate):
 						listArticlesInfo_html.append(tempListArticlesInfo_html[i])
 
-				page = requests.get("http://www.eltiempo.com/category/latest/politica/" + str(numPage))        
+				page = requests.get("http://www.eltiempo.com/category/latest/politica/" + str(numPage))
 				soup = BeautifulSoup(page.content, "html.parser")
 				tempListArticlesInfo_html = soup.select(".listing .informacion") #!
 
-		else: 
+		else:
 
 			listArticlesInfo_html = tempListArticlesInfo_html
 
@@ -64,10 +64,12 @@ class ezArticle():
 
 		return listOfArticles
 
-#TEST
-testList = ezArticle("26/02/18")
-maList = testList.getElTiempoArticles()
-output = open('output.txt', 'w')
-for item in maList:
-	output.write("%s\n" % item)
-output.close()
+
+if __name__ == '__main__':
+    #TEST
+    testList = EzArticle("26/02/18")
+    maList = testList.getElTiempoArticles()
+    output = open('output.txt', 'w')
+    for item in maList:
+    	output.write("%s\n" % item)
+    output.close()
