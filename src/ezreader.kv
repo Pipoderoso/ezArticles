@@ -1,22 +1,25 @@
 #: import main main
 #: import ListAdapter kivy.adapters.listadapter.ListAdapter
-
-RootForm:
-
 <RootForm>:
     MainForm
 
 <ArticleButton>:
-    on_press: app.root.show_current_article(self.text)
+    text: self.article['title']
+    height: "30dp"
+    size_hint_y: None
+    on_press: app.root.show_current_article(self.article)
 
-<CurrentArticle@BoxLayout>:
-    title: ""
-    summary: None
-    link: None
-    whole_text: None
+<CurrentArticle>:
     orientation: "vertical"
+    size_hint:(1, 1)
     Label:
         text: root.title
+        text_size: root.width, None
+        size: self.texture_size
+    Label:
+        text: root.summary
+        text_size: root.width, None
+        size: self.texture_size
     BoxLayout:
         orientation: "horizontal"
         size_hint_y: None
@@ -51,6 +54,6 @@ RootForm:
 		ListView:
 			id: articles_listview
             adapter:
-                ListAdapter(data=[], cls=main.ArticleButton)
-			size_hint:(1, None)
+                ListAdapter(data=[],cls=main.ArticleButton,args_converter=root.args_converter)
+			size_hint:(1, 1)
 			item_strings: []
